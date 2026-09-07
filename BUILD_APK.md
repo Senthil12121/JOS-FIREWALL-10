@@ -1,6 +1,14 @@
 # How to Build & Get the APK File for JOS Firewall
 
-All **67 project files** (Kotlin classes, Room database, XML layouts, drawables, themes, Gradle wrapper, and manifest) are included in the downloadable project ZIP.
+All project files (Kotlin classes, Room database, XML layouts, drawables, themes, and manifest) are included in the downloadable project ZIP.
+
+> **Known issue:** `gradle/wrapper/gradle-wrapper.jar` (the small binary that lets `./gradlew` bootstrap itself) is **not** bundled in this ZIP — only `gradle-wrapper.properties` is. If you build locally with the CLI (`./gradlew ...`) before that jar exists, it will fail with an error like *"Could not find or load main class org.gradle.wrapper.GradleWrapperMain"*.
+>
+> **Fix, one time, with any local Gradle install:**
+> ```bash
+> gradle wrapper --gradle-version 8.7
+> ```
+> This regenerates `gradle-wrapper.jar` correctly for this project. After that, `./gradlew` works as normal. Android Studio (Method 1) usually regenerates this automatically on first sync — if it doesn't, use **File > Sync Project with Gradle Files**, or run the command above once. The included GitHub Actions workflow (Method 2 below) already works around this and needs no manual fix.
 
 ---
 
